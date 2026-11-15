@@ -60,12 +60,21 @@ class Booking(models.Model):
         return f"{self.item} ({self.start_date} to {self.end_date})"
 
 
+
 class ItemImage(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='items/%Y/%m/')
+    item = models.ForeignKey(
+        Item,
+        on_delete=models.CASCADE,
+        related_name="images",
+    )
+
+    image = models.ImageField(
+        upload_to="items/%Y/%m/",
+        max_length=500,
+    )
 
     class Meta:
-        ordering = ['id']
+        ordering = ["id"]
 
 
 class MockPayment(models.Model):
