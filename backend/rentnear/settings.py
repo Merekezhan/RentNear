@@ -198,15 +198,20 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
+}
 
 STORAGES = {
     "default": {
-        "BACKEND": (
-            "cloudinary_storage.storage.MediaCloudinaryStorage"
-            if os.environ.get("CLOUDINARY_URL")
-            else "django.core.files.storage.FileSystemStorage"
-        ),
-    },
+    "BACKEND": (
+        "cloudinary_storage.storage.MediaCloudinaryStorage"
+        if os.environ.get("CLOUDINARY_CLOUD_NAME")
+        else "django.core.files.storage.FileSystemStorage"
+    ),
+},
     "staticfiles": {
         "BACKEND": (
             "whitenoise.storage.CompressedManifestStaticFilesStorage"
