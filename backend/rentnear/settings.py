@@ -62,6 +62,9 @@ INSTALLED_APPS = [
 
     "accounts",
     "marketplace",
+    
+    "cloudinary_storage",
+    "cloudinary",
 ]
 
 
@@ -195,23 +198,24 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+
 STORAGES = {
     "default": {
         "BACKEND": (
-            "django.core.files.storage.FileSystemStorage"
+            "cloudinary_storage.storage.MediaCloudinaryStorage"
+            if os.environ.get("CLOUDINARY_URL")
+            else "django.core.files.storage.FileSystemStorage"
         ),
     },
     "staticfiles": {
         "BACKEND": (
-            "whitenoise.storage."
-            "CompressedManifestStaticFilesStorage"
+            "whitenoise.storage.CompressedManifestStaticFilesStorage"
             if not DEBUG
-            else
-            "django.contrib.staticfiles.storage."
-            "StaticFilesStorage"
+            else "django.contrib.staticfiles.storage.StaticFilesStorage"
         ),
     },
 }
+
 
 
 # --------------------------------------------------
