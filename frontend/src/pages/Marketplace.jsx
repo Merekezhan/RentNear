@@ -4,10 +4,19 @@ import { api, parseApiErrors } from '../api';
 import { BookingForm } from './Bookings';
 import { useAuth } from '../auth';
 import MotionCarousel from "../components/MotionCarousel";  
+import heroLlama from "../assets/hero-llama.png";
+import rentnearLogo from "../assets/logo-r-white.png";
+import loginLlama from "../assets/login-llama.png";
 
 export function MarketplaceLayout() {
   const { user, logout, loading } = useAuth();
-  return <><header className="market-nav"><Link className="logo" to="/">RentNear<span>Borrow more. Own less.</span></Link><nav aria-label="Main navigation"><NavLink to="/" end>Browse Items</NavLink><NavLink to="/items/new">Create Listing</NavLink><NavLink to="/my-listings">My Listings</NavLink><NavLink to="/my-bookings">My Bookings</NavLink>{!loading && (user ? <button onClick={logout}>Logout</button> : <Link to="/login">Login</Link>)}</nav></header><main className="market-main"><Outlet /></main><footer className="market-footer">RentNear · Good things, closer to home.</footer></>;
+  return <><header className="market-nav"><Link className="logo" to="/">
+  <img
+    className="brand-logo-full"
+    src={rentnearLogo}
+    alt="RentNear"
+  />
+</Link><nav aria-label="Main navigation"><NavLink to="/" end>Browse Items</NavLink><NavLink to="/items/new">Create Listing</NavLink><NavLink to="/my-listings">My Listings</NavLink><NavLink to="/my-bookings">My Bookings</NavLink>{!loading && (user ? <button onClick={logout}>Logout</button> : <Link to="/login">Login</Link>)}</nav></header><main className="market-main"><Outlet /></main><footer className="market-footer">RentNear · Good things, closer to home.</footer></>;
 }
 
 function ErrorMessage({ error }) {
@@ -42,13 +51,57 @@ export function BrowseItems({ mine = false }) {
   }, [query, mine, token]);
   const change = e => setDraft({ ...draft, [e.target.name]: e.target.value });
   function page(delta) { const next = new URLSearchParams(params); next.set('page', Number(params.get('page') || 1) + delta); setParams(next); }
-  return <><section className="market-hero"><p className="eyebrow">{mine ? 'Your little rental business' : 'Less buying. More living.'}</p><h1>{mine ? 'My Listings' : 'Find what you need.\nRight around you.'}</h1><p>{mine ? 'Manage your items, photos and availability in one place.' : 'From weekend adventures to everyday projects, rent from your community.'}</p>{mine && <Link className="button-link" to="/items/new">+ Create Listing</Link>}</section>
+  return <>
+<section className={mine ? "market-hero" : "rn-hero"}>
+  {mine ? (
+    <>
+      <p className="eyebrow">Your little rental business</p>
+      <h1>My Listings</h1>
+      <p>Manage your items, photos and availability in one place.</p>
+      <Link className="button-link" to="/items/new">
+        + Create Listing
+      </Link>
+    </>
+  ) : (
+    <div className="rn-hero-inner">
+      <div className="rn-hero-copy">
+        <p className="eyebrow">BORROW MORE. OWN LESS.</p>
+
+        <h1>
+          Why buy it when
+          <br />
+          you can rent it?
+        </h1>
+
+        <p className="rn-description">
+          Discover laptops, cameras, gaming gear, and everyday
+          essentials available from people near you.
+        </p>
+
+        <div className="rn-hero-actions">
+          <a className="rn-primary" href="#explore-items">
+            Explore Items →
+          </a>
+
+          <Link className="rn-outline" to="/items/new">
+            List Your Item
+          </Link>
+        </div>
+      </div>
+
+      <div className="rn-hero-visual">
+        <img src={heroLlama} alt="RentNear llama with rental gadgets" />
+      </div>
+    </div>
+  )}
+</section>
+
     {!mine && !loading && !error && (
       <MotionCarousel items={data?.results || []} />
     )}
     {location.state?.message && <p className="success" role="status">{location.state.message}</p>}
     {!mine && <form className="filters" onSubmit={e => { e.preventDefault(); setParams(Object.fromEntries(Object.entries(draft).filter(([key, value]) => key !== 'page' && value))); }}><label className="search-field">What are you looking for?<input name="search" placeholder="Try camera, drill, camping…" value={draft.search || ''} onChange={change} /></label><label>Category<select name="category" value={draft.category || ''} onChange={change}><option value="">All categories</option>{[...new Set([...categories, draft.category].filter(Boolean))].map(c => <option key={c}>{c}</option>)}</select></label><label>Location<input name="location" placeholder="City or neighborhood" value={draft.location || ''} onChange={change} /></label><label>Min price / day<input name="min_price" type="number" min="0" step="0.01" value={draft.min_price || ''} onChange={change} /></label><label>Max price / day<input name="max_price" type="number" min="0" step="0.01" value={draft.max_price || ''} onChange={change} /></label><button>Find items</button><button className="secondary" type="button" onClick={() => { setDraft({}); setParams({}); }}>Clear</button></form>}
-    <ErrorMessage error={error} />{loading ? <p role="status">Loading listings…</p> : !error && <><div className="results-heading"><h2>{mine ? 'Your items' : 'Explore nearby'}</h2><span>{data?.count || 0} items</span></div>{data?.results.length ? <div className="item-grid">{data.results.map(item => <ItemCard key={item.id} item={item} />)}</div> : <div className="empty-state"><h2>No items found</h2><p>{mine ? 'Share something useful with your neighbors.' : 'Try a different search or clear your filters.'}</p></div>}<div className="pagination"><button disabled={!data?.previous} onClick={() => page(-1)}>Previous</button><span>Page {params.get('page') || 1}</span><button disabled={!data?.next} onClick={() => page(1)}>Next</button></div></>}
+    <ErrorMessage error={error} />{loading ? <p role="status">Loading listings…</p> : !error && <><div className="results-heading" id="explore-items"><h2>{mine ? 'Your items' : 'Explore nearby'}</h2><span>{data?.count || 0} items</span></div>{data?.results.length ? <div className="item-grid">{data.results.map(item => <ItemCard key={item.id} item={item} />)}</div> : <div className="empty-state"><h2>No items found</h2><p>{mine ? 'Share something useful with your neighbors.' : 'Try a different search or clear your filters.'}</p></div>}<div className="pagination"><button disabled={!data?.previous} onClick={() => page(-1)}>Previous</button><span>Page {params.get('page') || 1}</span><button disabled={!data?.next} onClick={() => page(1)}>Next</button></div></>}
   </>;
 }
 
