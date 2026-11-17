@@ -582,3 +582,10 @@ select:focus {
     grid-template-columns: 1fr;
   }
 }
+
+/* Extend blue background downward */
+@media (min-width: 901px) {
+  .rn-hero {
+    padding-bottom: 80px;
+  }
+}
