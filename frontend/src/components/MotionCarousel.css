@@ -1,11 +1,13 @@
 
+/* RENTNEAR — ELECTRIC BLUE CAROUSEL */
+
 .motion-showcase {
   margin: 55px 0 65px;
   padding: 44px 0 34px;
   overflow: hidden;
   border-radius: 30px;
-  background: #f5f8ef;
-  border: 1px solid #e0e9d9;
+  background: #F2F6FF;
+  border: 1px solid #DCE9FF;
 }
 
 .motion-showcase-header {
@@ -17,7 +19,7 @@
 }
 
 .motion-eyebrow {
-  color: #0c6847;
+  color: #0052E8;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -31,28 +33,30 @@
   line-height: 1.06;
   font-weight: 500;
   letter-spacing: -0.045em;
-  color: #102c22;
+  color: #0039B8;
 }
 
 .motion-showcase h2 em {
-  color: #15966a;
+  color: #0052E8;
   font-weight: 400;
 }
 
 .motion-showcase-header p {
   max-width: 480px;
-  color: #68786d;
+  color: #60749C;
   font-size: 15px;
 }
 
 .motion-handwriting {
   font-family: "Comic Sans MS", cursive;
-  color: #16754d;
+  color: #0052E8;
   font-size: 23px;
   transform: rotate(-11deg);
   white-space: nowrap;
   margin-bottom: 32px;
 }
+
+/* MOVING CAROUSEL */
 
 .motion-carousel-window {
   width: 100%;
@@ -86,10 +90,13 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
 }
+
+/* PRODUCT TILES */
 
 .motion-tile {
   flex: 0 0 246px;
@@ -113,25 +120,27 @@
   rotate: 5deg;
 }
 
+/* PRODUCT CARDS */
+
 .motion-product {
   display: block;
   overflow: hidden;
   border-radius: 19px;
-  background: white;
-  color: #17382b;
+  background: #FFFFFF;
+  color: #0039B8;
   text-decoration: none;
-  box-shadow: 0 16px 40px rgba(15, 55, 32, 0.13);
+  box-shadow: 0 16px 40px rgba(0, 57, 184, 0.12);
   transition: box-shadow 0.3s ease;
 }
 
 .motion-product:hover {
-  box-shadow: 0 24px 55px rgba(15, 55, 32, 0.22);
+  box-shadow: 0 24px 55px rgba(0, 57, 184, 0.22);
 }
 
 .motion-product-image {
   height: 275px;
   position: relative;
-  background: #dae7d8;
+  background: #DCE9FF;
 }
 
 .motion-product-image img {
@@ -146,7 +155,7 @@
   place-items: center;
   font-family: Georgia, serif;
   font-size: 24px;
-  color: #39765a;
+  color: #0052E8;
 }
 
 .motion-category {
@@ -155,8 +164,8 @@
   left: 13px;
   padding: 6px 12px;
   border-radius: 40px;
-  background: rgba(255, 255, 255, 0.92);
-  color: #15533c;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0039B8;
   font-size: 11px;
   font-weight: 700;
 }
@@ -169,30 +178,35 @@
   font-size: 15px;
   margin: 0 0 7px;
   line-height: 1.35;
+  color: #0039B8;
 }
 
 .motion-price {
-  color: #0d8158;
+  color: #0052E8;
   font-weight: 800;
   font-size: 14px;
 }
 
 .motion-product-info p {
   font-size: 12px;
-  color: #879087;
+  color: #7182A2;
   margin: 7px 0 0;
 }
+
+/* BOTTOM LABELS */
 
 .motion-showcase-bottom {
   padding: 0 42px;
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  color: #347959;
+  color: #0039B8;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.12em;
 }
+
+/* RESPONSIVE */
 
 @media (max-width: 700px) {
   .motion-showcase {
@@ -222,6 +236,8 @@
   }
 }
 
+/* ACCESSIBILITY */
+
 @media (prefers-reduced-motion: reduce) {
   .motion-carousel-track.is-moving {
     animation: none;
@@ -232,68 +248,3 @@
     transition: none;
   }
 }
-
-/* RENTNEAR BLUE CAROUSEL THEME */
-
-.motion-showcase {
-  background: #F2F6FF;
-  border: 1px solid #DCE9FF;
-}
-
-.motion-eyebrow {
-  color: #0052E8;
-}
-
-.motion-showcase-header h2 {
-  color: #0039B8;
-}
-
-.motion-showcase-header h2 em {
-  color: #0052E8;
-}
-
-.motion-showcase-header p {
-  color: #60749C;
-}
-
-.motion-handwriting {
-  color: #0052E8;
-}
-
-/* Product cards */
-
-.motion-product {
-  background: #FFFFFF;
-}
-
-.motion-product-info h3 {
-  color: #0039B8;
-}
-
-.motion-price {
-  color: #0052E8;
-}
-
-.motion-product-info p {
-  color: #7182A2;
-}
-
-.motion-category {
-  background: #FFFFFF;
-  color: #0039B8;
-}
-
-.motion-no-image {
-  color: #0052E8;
-}
-
-/* Bottom labels */
-
-.motion-showcase-bottom {
-  color: #0039B8;
-}
-
-.motion-showcase-bottom span {
-  color: #0039B8;
-}
-
