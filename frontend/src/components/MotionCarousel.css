@@ -232,3 +232,68 @@
     transition: none;
   }
 }
+
+/* RENTNEAR BLUE CAROUSEL THEME */
+
+.motion-showcase {
+  background: #F2F6FF;
+  border: 1px solid #DCE9FF;
+}
+
+.motion-eyebrow {
+  color: #0052E8;
+}
+
+.motion-showcase-header h2 {
+  color: #0039B8;
+}
+
+.motion-showcase-header h2 em {
+  color: #0052E8;
+}
+
+.motion-showcase-header p {
+  color: #60749C;
+}
+
+.motion-handwriting {
+  color: #0052E8;
+}
+
+/* Product cards */
+
+.motion-product {
+  background: #FFFFFF;
+}
+
+.motion-product-info h3 {
+  color: #0039B8;
+}
+
+.motion-price {
+  color: #0052E8;
+}
+
+.motion-product-info p {
+  color: #7182A2;
+}
+
+.motion-category {
+  background: #FFFFFF;
+  color: #0039B8;
+}
+
+.motion-no-image {
+  color: #0052E8;
+}
+
+/* Bottom labels */
+
+.motion-showcase-bottom {
+  color: #0039B8;
+}
+
+.motion-showcase-bottom span {
+  color: #0039B8;
+}
+
