@@ -434,3 +434,130 @@ select:focus {
   font-size: 17px;
   line-height: 1.6;
 }
+
+/* RENTNEAR — COMPACT PRODUCT GRID */
+
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.item-card {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #DCE9FF;
+  background: #FFFFFF;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgba(0, 57, 184, 0.12);
+}
+
+/* Smaller product photos */
+.item-card .card-photo {
+  height: 210px;
+  overflow: hidden;
+  background: #F2F6FF;
+}
+
+.item-card .card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Compact text */
+.item-card .card-copy {
+  padding: 15px;
+}
+
+.item-card .card-copy h2 {
+  font-size: 16px;
+  line-height: 1.35;
+  margin-bottom: 7px;
+}
+
+.item-card .card-copy p {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.item-card .card-copy strong {
+  font-size: 18px;
+  color: #0039B8;
+}
+
+/* Responsive grid */
+@media (max-width: 1200px) {
+  .item-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .item-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .item-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Smaller product photos */
+.item-card .card-photo {
+  height: 210px;
+  overflow: hidden;
+  background: #F2F6FF;
+}
+
+.item-card .card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Compact text */
+.item-card .card-copy {
+  padding: 15px;
+}
+
+.item-card .card-copy h2 {
+  font-size: 16px;
+  line-height: 1.35;
+  margin-bottom: 7px;
+}
+
+.item-card .card-copy p {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.item-card .card-copy strong {
+  font-size: 18px;
+  color: #0039B8;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .item-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .item-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .item-grid {
+    grid-template-columns: 1fr;
+  }
+}
